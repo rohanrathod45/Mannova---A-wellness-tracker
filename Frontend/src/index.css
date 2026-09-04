@@ -1,0 +1,571 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ==========================================================================
+   CSS VARIABLES FOR LIGHT & DARK THEMES
+   ========================================================================== */
+:root {
+  --color-bg-base: #f8f5ff;
+  --color-bg-surface: #ffffff;
+  --color-bg-surface-hover: #f3effc;
+  --color-bg-surface-elevated: #f1f5f9;
+  --color-border: #e2e8f0;
+  --color-border-subtle: #f1f5f9;
+  --color-text-main: #0f172a;
+  --color-text-body: #334155;
+  --color-text-muted: #64748b;
+  --color-text-subtle: #94a3b8;
+  --color-primary: #7c3aed;
+  --color-primary-light: #a78bfa;
+  --color-primary-container: #ede9fe;
+  --color-primary-text: #6d28d9;
+}
+
+html.dark,
+body.dark,
+body.dark-mode {
+  --color-bg-base: #0b0f19;
+  --color-bg-surface: #121b2d;
+  --color-bg-surface-hover: #19253e;
+  --color-bg-surface-elevated: #1a253c;
+  --color-border: #233047;
+  --color-border-subtle: #1c273a;
+  --color-text-main: #f8fafc;
+  --color-text-body: #e2e8f0;
+  --color-text-muted: #94a3b8;
+  --color-text-subtle: #64748b;
+  --color-primary: #a78bfa;
+  --color-primary-light: #c084fc;
+  --color-primary-container: rgba(139, 92, 246, 0.18);
+  --color-primary-text: #c084fc;
+}
+
+/* ==========================================================================
+   BASE & SMOOTH TRANSITIONS
+   ========================================================================== */
+body {
+  background: linear-gradient(135deg, #f8f5ff, #fef6ff);
+  color: #1e293b;
+  min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.text-primary {
+  color: #674bb5;
+}
+
+.bg-surface {
+  background-color: #f8f9ff;
+}
+
+.bg-primary-container {
+  background-color: #e8ddff;
+}
+
+.bg-secondary-container {
+  background-color: #fdd0ea;
+}
+
+.text-on-surface {
+  color: #121c2a;
+}
+
+.text-on-surface-variant {
+  color: #494552;
+}
+
+.border-outline-variant {
+  border-color: #cac4d4;
+}
+
+/* ==========================================================================
+   KEYFRAME ANIMATIONS
+   ========================================================================== */
+@keyframes floating {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-floating {
+  animation: floating 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.glass-card {
+  background: #ffffff;
+  border: 1px solid #eeeaf7;
+  border-radius: 16px;
+  box-shadow: 0 4px 18px rgba(103, 75, 181, 0.08);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* ==========================================================================
+   DARK THEME SYSTEM (APPLIES TO html.dark, body.dark, body.dark-mode)
+   ========================================================================== */
+
+/* 1. Global Page Background & Root Text */
+html.dark,
+body.dark-mode,
+body.dark {
+  background-color: #0b0f19 !important;
+  background-image: 
+    radial-gradient(at 15% 15%, rgba(124, 58, 237, 0.08) 0px, transparent 50%),
+    radial-gradient(at 85% 85%, rgba(56, 189, 248, 0.06) 0px, transparent 50%) !important;
+  color: #f8fafc !important;
+}
+
+/* 2. Containers, Main wrappers & Page Backgrounds */
+.dark-mode main,
+.dark-mode .min-h-screen,
+.dark-mode [class*="min-h-screen"],
+.dark main,
+.dark .min-h-screen,
+.dark [class*="min-h-screen"] {
+  color: #f8fafc;
+}
+
+.dark-mode .bg-\[\#f8f9ff\],
+.dark-mode .bg-\[\#f9f9ff\],
+.dark-mode .bg-\[\#fafaff\],
+.dark-mode .bg-slate-50,
+.dark-mode .bg-gray-50,
+.dark-mode .bg-purple-50,
+.dark-mode .bg-surface,
+.dark .bg-\[\#f8f9ff\],
+.dark .bg-\[\#f9f9ff\],
+.dark .bg-\[\#fafaff\],
+.dark .bg-slate-50,
+.dark .bg-gray-50,
+.dark .bg-purple-50,
+.dark .bg-surface {
+  background-color: #0b0f19 !important;
+}
+
+/* Page gradient overlays in dark mode (Home, Breathing, Onboarding) */
+.dark-mode [class*="bg-gradient-to-br"],
+.dark-mode [class*="bg-gradient-to-tr"],
+.dark-mode [class*="bg-gradient-to-r from-purple-50"],
+.dark-mode [class*="from-purple-50"],
+.dark [class*="bg-gradient-to-br"],
+.dark [class*="bg-gradient-to-tr"],
+.dark [class*="bg-gradient-to-r from-purple-50"],
+.dark [class*="from-purple-50"] {
+  background: #0b0f19 !important;
+  background-image: 
+    radial-gradient(at 10% 20%, rgba(124, 58, 237, 0.12) 0px, transparent 40%),
+    radial-gradient(at 90% 80%, rgba(56, 189, 248, 0.08) 0px, transparent 40%) !important;
+}
+
+/* Subtle background glows in dark mode */
+.dark-mode .bg-purple-100,
+.dark-mode .bg-pink-100,
+.dark-mode .bg-violet-100\/70,
+.dark-mode .bg-purple-300\/20,
+.dark-mode .bg-pink-300\/20,
+.dark-mode .bg-violet-300\/30,
+.dark-mode .bg-sky-300\/30,
+.dark .bg-purple-100,
+.dark .bg-pink-100,
+.dark .bg-violet-100\/70,
+.dark .bg-purple-300\/20,
+.dark .bg-pink-300\/20,
+.dark .bg-violet-300\/30,
+.dark .bg-sky-300\/30 {
+  background-color: rgba(139, 92, 246, 0.09) !important;
+}
+
+/* 3. Headers, Navbars & Footers */
+.dark-mode header,
+.dark header {
+  background-color: rgba(15, 23, 42, 0.88) !important;
+  border-color: rgba(35, 48, 71, 0.7) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+}
+
+.dark-mode header nav button,
+.dark header nav button {
+  color: #94a3b8;
+}
+
+.dark-mode header nav button:hover,
+.dark header nav button:hover {
+  background-color: rgba(167, 139, 250, 0.15) !important;
+  color: #c084fc !important;
+}
+
+.dark-mode header nav button.bg-violet-100,
+.dark header nav button.bg-violet-100 {
+  background-color: rgba(139, 92, 246, 0.22) !important;
+  color: #c084fc !important;
+  box-shadow: 0 4px 14px rgba(124, 58, 237, 0.25) !important;
+}
+
+/* Bottom Navigation */
+.dark-mode nav.fixed.bottom-0,
+.dark nav.fixed.bottom-0 {
+  background-color: #0f172a !important;
+  border-color: #1e293b !important;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5) !important;
+}
+
+.dark-mode nav.fixed.bottom-0 button,
+.dark nav.fixed.bottom-0 button {
+  color: #94a3b8;
+}
+
+.dark-mode nav.fixed.bottom-0 button:hover,
+.dark nav.fixed.bottom-0 button:hover {
+  background-color: rgba(167, 139, 250, 0.12) !important;
+  color: #c084fc !important;
+}
+
+.dark-mode nav.fixed.bottom-0 button.bg-violet-100,
+.dark nav.fixed.bottom-0 button.bg-violet-100 {
+  background-color: rgba(139, 92, 246, 0.25) !important;
+  color: #c084fc !important;
+}
+
+/* 4. Cards, Panels, Modals & Surfaces */
+.dark-mode .bg-white,
+.dark-mode .bg-white\/70,
+.dark-mode .bg-white\/80,
+.dark-mode .bg-white\/90,
+.dark-mode .glass-card,
+.dark-mode section.bg-white,
+.dark .bg-white,
+.dark .bg-white\/70,
+.dark .bg-white\/80,
+.dark .bg-white\/90,
+.dark .glass-card,
+.dark section.bg-white {
+  background-color: #121b2d !important;
+  border-color: #233047 !important;
+  color: #f8fafc !important;
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.35) !important;
+}
+
+/* Elevated/Inner surfaces */
+.dark-mode .bg-gray-100,
+.dark-mode .bg-gray-50,
+.dark-mode .bg-slate-100,
+.dark-mode .bg-slate-50,
+.dark-mode .bg-\[\#f1f5f9\],
+.dark .bg-gray-100,
+.dark .bg-gray-50,
+.dark .bg-slate-100,
+.dark .bg-slate-50,
+.dark .bg-\[\#f1f5f9\] {
+  background-color: #172338 !important;
+  color: #e2e8f0 !important;
+}
+
+/* 5. Typography in Dark Mode */
+.dark-mode h1,
+.dark-mode h2,
+.dark-mode h3,
+.dark-mode h4,
+.dark-mode h5,
+.dark-mode h6,
+.dark h1,
+.dark h2,
+.dark h3,
+.dark h4,
+.dark h5,
+.dark h6 {
+  color: #f8fafc !important;
+}
+
+.dark-mode .text-purple-700,
+.dark-mode .text-violet-700,
+.dark-mode .text-violet-600,
+.dark-mode .text-primary,
+.dark-mode .text-\[\#674bb5\],
+.dark-mode .text-\[\#7255a8\],
+.dark-mode .text-\[\#7a1cff\],
+.dark .text-purple-700,
+.dark .text-violet-700,
+.dark .text-violet-600,
+.dark .text-primary,
+.dark .text-\[\#674bb5\],
+.dark .text-\[\#7255a8\],
+.dark .text-\[\#7a1cff\] {
+  color: #c084fc !important;
+}
+
+.dark-mode .text-gray-900,
+.dark-mode .text-gray-800,
+.dark-mode .text-slate-900,
+.dark-mode .text-slate-800,
+.dark-mode .text-\[\#121c2a\],
+.dark-mode .text-\[\#1e1c24\],
+.dark-mode .text-\[\#37333d\],
+.dark-mode .text-on-surface,
+.dark .text-gray-900,
+.dark .text-gray-800,
+.dark .text-slate-900,
+.dark .text-slate-800,
+.dark .text-\[\#121c2a\],
+.dark .text-\[\#1e1c24\],
+.dark .text-\[\#37333d\],
+.dark .text-on-surface {
+  color: #f1f5f9 !important;
+}
+
+.dark-mode .text-gray-700,
+.dark-mode .text-gray-600,
+.dark-mode .text-slate-700,
+.dark-mode .text-slate-600,
+.dark-mode .text-\[\#494552\],
+.dark-mode .text-\[\#6d6878\],
+.dark-mode .text-\[\#686372\],
+.dark-mode .text-\[\#666474\],
+.dark-mode .text-on-surface-variant,
+.dark .text-gray-700,
+.dark .text-gray-600,
+.dark .text-slate-700,
+.dark .text-slate-600,
+.dark .text-\[\#494552\],
+.dark .text-\[\#6d6878\],
+.dark .text-\[\#686372\],
+.dark .text-\[\#666474\],
+.dark .text-on-surface-variant {
+  color: #94a3b8 !important;
+}
+
+.dark-mode .text-gray-500,
+.dark-mode .text-gray-400,
+.dark-mode .text-slate-500,
+.dark-mode .text-slate-400,
+.dark-mode .text-\[\#8b8793\],
+.dark-mode .text-\[\#92909a\],
+.dark-mode .text-\[\#777586\],
+.dark .text-gray-500,
+.dark .text-gray-400,
+.dark .text-slate-500,
+.dark .text-slate-400,
+.dark .text-\[\#8b8793\],
+.dark .text-\[\#92909a\],
+.dark .text-\[\#777586\] {
+  color: #64748b !important;
+}
+
+/* 6. Borders & Dividers */
+.dark-mode .border,
+.dark-mode .border-t,
+.dark-mode .border-b,
+.dark-mode .border-l,
+.dark-mode .border-r,
+.dark-mode .border-gray-200,
+.dark-mode .border-gray-100,
+.dark-mode .border-gray-300,
+.dark-mode .border-gray-200\/30,
+.dark-mode .border-gray-200\/50,
+.dark-mode .border-\[\#eeeaf7\],
+.dark-mode .border-\[\#e7e5ee\],
+.dark-mode .border-\[\#eceaf3\],
+.dark-mode .border-outline-variant,
+.dark .border,
+.dark .border-t,
+.dark .border-b,
+.dark .border-l,
+.dark .border-r,
+.dark .border-gray-200,
+.dark .border-gray-100,
+.dark .border-gray-300,
+.dark .border-gray-200\/30,
+.dark .border-gray-200\/50,
+.dark .border-\[\#eeeaf7\],
+.dark .border-\[\#e7e5ee\],
+.dark .border-\[\#eceaf3\],
+.dark .border-outline-variant {
+  border-color: #233047 !important;
+}
+
+/* 7. Forms, Inputs, Selects & Textareas */
+.dark-mode input,
+.dark-mode select,
+.dark-mode textarea,
+.dark input,
+.dark select,
+.dark textarea {
+  background-color: #172338 !important;
+  color: #f8fafc !important;
+  border-color: #2e3f5c !important;
+}
+
+.dark-mode select option,
+.dark select option {
+  background-color: #172338 !important;
+  color: #f8fafc !important;
+}
+
+.dark-mode input::placeholder,
+.dark-mode textarea::placeholder,
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: #64748b !important;
+}
+
+.dark-mode input:focus,
+.dark-mode select:focus,
+.dark-mode textarea:focus,
+.dark input:focus,
+.dark select:focus,
+.dark textarea:focus {
+  border-color: #a78bfa !important;
+  box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.25) !important;
+}
+
+/* 8. Specific Component Overrides for Dark Mode */
+
+/* Badges & Tags */
+.dark-mode .bg-primary-container\/10,
+.dark .bg-primary-container\/10 {
+  background-color: rgba(139, 92, 246, 0.15) !important;
+  border-color: rgba(139, 92, 246, 0.25) !important;
+}
+
+/* Secondary Buttons */
+.dark-mode button.border-primary,
+.dark-mode button.border-purple-700,
+.dark button.border-primary,
+.dark button.border-purple-700 {
+  border-color: #a78bfa !important;
+  color: #c084fc !important;
+  background-color: rgba(167, 139, 250, 0.08) !important;
+}
+
+.dark-mode button.border-primary:hover,
+.dark button.border-primary:hover {
+  background-color: rgba(167, 139, 250, 0.18) !important;
+}
+
+/* Chat Page Enhancements */
+.dark-mode aside,
+.dark aside {
+  background-color: #0e1626 !important;
+  border-color: #1e2a3f !important;
+}
+
+.dark-mode .bg-gradient-to-r.from-\[\#f6f4fb\].to-\[\#e7dbff\],
+.dark .bg-gradient-to-r.from-\[\#f6f4fb\].to-\[\#e7dbff\] {
+  background: #19263c !important;
+  color: #f1f5f9 !important;
+  border: 1px solid #283a57 !important;
+}
+
+.dark-mode .bg-\[\#fff7f5\],
+.dark .bg-\[\#fff7f5\] {
+  background-color: rgba(239, 68, 68, 0.08) !important;
+  border-color: rgba(239, 68, 68, 0.2) !important;
+}
+
+/* Calendar & Progress */
+.dark-mode .bg-green-100,
+.dark .bg-green-100 {
+  background-color: rgba(34, 197, 94, 0.15) !important;
+  color: #4ade80 !important;
+}
+
+.dark-mode .text-green-600,
+.dark .text-green-600 {
+  color: #4ade80 !important;
+}
+
+.dark-mode .bg-gray-200,
+.dark .bg-gray-200 {
+  background-color: #1e2c44 !important;
+  color: #94a3b8 !important;
+}
+
+/* Floating Audio Player / Exercise Player */
+.dark-mode .fixed.bottom-0.left-0.right-0,
+.dark .fixed.bottom-0.left-0.right-0 {
+  background-color: #0f172a !important;
+  border-color: #233047 !important;
+}
+
+/* Login and Signup Cards in Dark Mode */
+.dark-mode .mannova-login-page,
+.dark .mannova-login-page {
+  background:
+    radial-gradient(circle at 15% 20%, rgba(124, 58, 237, 0.18), transparent 45%),
+    radial-gradient(circle at 85% 80%, rgba(14, 165, 233, 0.12), transparent 45%),
+    linear-gradient(135deg, #090d16 0%, #0f172a 50%, #111a2e 100%) !important;
+}
+
+.dark-mode .mannova-login-card,
+.dark .mannova-login-card {
+  background: rgba(18, 27, 45, 0.82) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5) !important;
+}
+
+.dark-mode .mannova-logo-wrapper,
+.dark .mannova-logo-wrapper {
+  background: rgba(26, 38, 62, 0.9) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4) !important;
+}
+
+.dark-mode .mannova-title,
+.dark .mannova-title {
+  color: #c4b5fd !important;
+}
+
+.dark-mode .mannova-subtitle,
+.dark .mannova-subtitle {
+  color: #94a3b8 !important;
+}
+
+.dark-mode .mannova-label,
+.dark .mannova-label {
+  color: #cbd5e1 !important;
+}
+
+.dark-mode .mannova-input,
+.dark .mannova-input {
+  background: #162136 !important;
+  color: #f8fafc !important;
+  border: 1px solid #25344d !important;
+}
+
+.dark-mode .mannova-input:focus,
+.dark .mannova-input:focus {
+  background: #1a2740 !important;
+  border-color: #a78bfa !important;
+  box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.2) !important;
+}
+
+.dark-mode .mannova-signup-page,
+.dark .mannova-signup-page {
+  background:
+    radial-gradient(circle at 85% 15%, rgba(124, 58, 237, 0.18), transparent 45%),
+    radial-gradient(circle at 10% 90%, rgba(14, 165, 233, 0.12), transparent 45%),
+    #0b0f19 !important;
+  color: #f8fafc !important;
+}
+
+.dark-mode .mannova-signup-card,
+.dark .mannova-signup-card {
+  background: rgba(18, 27, 45, 0.85) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5) !important;
+}
