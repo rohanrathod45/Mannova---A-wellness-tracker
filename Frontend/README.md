@@ -1,5 +1,11 @@
 # 🌿 Mannova - Premium Mental Health & Wellness Platform
 
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Online-brightgreen?style=for-the-badge&logo=render)](https://mannova-frontend-updated.onrender.com)
+[![Backend API](https://img.shields.io/badge/Backend%20API-Active-blue?style=for-the-badge&logo=render)](https://mannova-a-wellness-tracker.onrender.com)
+
+> 🔗 **Live Website**: [https://mannova-frontend-updated.onrender.com](https://mannova-frontend-updated.onrender.com)  
+> 🔗 **Backend API**: [https://mannova-a-wellness-tracker.onrender.com](https://mannova-a-wellness-tracker.onrender.com)
+
 Welcome to **Mannova**, a comprehensive, full-stack mental health and wellness platform designed to guide users towards inner peace, mental clarity, and emotional well-being. Built on a modern web stack, Mannova integrates guided mindfulness exercises, analytics, therapist booking, and AI integrations.
 
 ---
