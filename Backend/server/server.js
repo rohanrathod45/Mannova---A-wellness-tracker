@@ -24,6 +24,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
+      "https://mannova-frontend-updated.onrender.com",
       "https://mannova-frontend.onrender.com"
     ],
     credentials: true
