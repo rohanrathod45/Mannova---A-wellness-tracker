@@ -19,8 +19,6 @@ const Mood = () => {
 
   // Store mood for each calendar date
   const [moodCalendar, setMoodCalendar] = useState({});
-
-  // Active month navigation state
   const [viewDate, setViewDate] = useState(new Date());
   const [selectedDayDetails, setSelectedDayDetails] = useState(null);
 
@@ -212,23 +210,26 @@ const Mood = () => {
   // CALENDAR NAVIGATION & CALCULATIONS
   // ==========================================
 
+  const currentYear = today.getFullYear();
+  const currentMonth = today.getMonth();
+
   const viewYear = viewDate.getFullYear();
   const viewMonth = viewDate.getMonth();
 
+  // Check if viewing current running month
+  const isCurrentMonth =
+    viewYear === currentYear && viewMonth === currentMonth;
+
+  // Allow browsing any past month
   const prevMonth = () => {
     setViewDate(new Date(viewYear, viewMonth - 1, 1));
   };
 
+  // Block browsing into the future beyond current running month
   const nextMonth = () => {
+    if (isCurrentMonth) return;
     setViewDate(new Date(viewYear, viewMonth + 1, 1));
   };
-
-  const resetToToday = () => {
-    setViewDate(new Date());
-  };
-
-  const isCurrentMonth =
-    viewYear === today.getFullYear() && viewMonth === today.getMonth();
 
   const monthName = viewDate.toLocaleString("default", {
     month: "long",
@@ -260,15 +261,15 @@ const Mood = () => {
 
         {/* Main */}
 
-        <main className="max-w-7xl mx-auto px-6 py-10">
+        <main className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-10">
 
-          <header className="mb-10">
+          <header className="mb-6 sm:mb-10">
 
-            <h2 className="text-5xl font-bold mb-3">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold mb-2 sm:mb-3">
               How are you feeling today?
             </h2>
 
-            <p className="text-gray-600 text-lg">
+            <p className="text-gray-600 text-sm sm:text-base md:text-lg">
               Guided tranquility begins with understanding your current state.
             </p>
 
@@ -284,13 +285,13 @@ const Mood = () => {
 
               {/* MOOD SELECTION */}
 
-              <section className="bg-white rounded-2xl shadow-lg p-6">
+              <section className="bg-white rounded-2xl shadow-lg p-4 sm:p-6">
 
-                <h3 className="text-xl font-semibold text-violet-700 mb-6">
+                <h3 className="text-lg sm:text-xl font-semibold text-violet-700 mb-4 sm:mb-6">
                   Mood Selection
                 </h3>
 
-                <div className="flex flex-wrap justify-around gap-5">
+                <div className="flex flex-wrap justify-around gap-3 sm:gap-5">
 
                   {moods.map((mood) => (
 
@@ -314,11 +315,11 @@ const Mood = () => {
                         // Hide previous success message
                         setSaved(false);
                       }}
-                      className="flex flex-col items-center gap-2"
+                      className="flex flex-col items-center gap-1.5 sm:gap-2 cursor-pointer"
                     >
 
                       <div
-                        className={`w-20 h-20 rounded-full flex items-center justify-center text-4xl transition duration-300
+                        className={`w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center text-2xl sm:text-3xl md:text-4xl transition duration-300
                         ${
                           selectedMood === mood.id
                             ? "bg-violet-200 scale-110 shadow-lg"
@@ -329,9 +330,9 @@ const Mood = () => {
                       </div>
 
                       <span
-                        className={`font-medium ${
+                        className={`text-xs sm:text-sm font-medium ${
                           selectedMood === mood.id
-                            ? "text-violet-700"
+                            ? "text-violet-700 font-bold"
                             : "text-gray-500"
                         }`}
                       >
@@ -433,12 +434,12 @@ const Mood = () => {
 
               {/* SAVE BUTTON */}
 
-              <div className="flex flex-col items-end sm:items-end mt-6">
+              <div className="flex flex-col items-stretch sm:items-end mt-6">
 
                 <button
                   onClick={handleSaveReflection}
                   disabled={loading}
-                  className={`px-8 py-4 bg-gradient-to-r from-violet-600 to-purple-500 text-white rounded-full shadow-lg hover:scale-105 transition ${
+                  className={`w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-violet-600 to-purple-500 text-white rounded-full shadow-lg hover:scale-105 transition cursor-pointer font-semibold ${
                     loading
                       ? "opacity-60 cursor-not-allowed"
                       : ""
@@ -448,7 +449,7 @@ const Mood = () => {
                 </button>
 
                 {saved && (
-                  <div className="mt-4 bg-green-100 text-green-700 border border-green-200 px-5 py-3 rounded-xl text-sm font-medium text-center">
+                  <div className="mt-4 bg-green-100 text-green-700 border border-green-200 px-5 py-3 rounded-xl text-sm font-medium text-center w-full sm:w-auto">
                     ✓ Reflection saved successfully!
                   </div>
                 )}
@@ -467,9 +468,8 @@ const Mood = () => {
 
               <section className="bg-white dark:bg-slate-900 border border-transparent dark:border-slate-800 rounded-2xl shadow-lg p-6 transition-all duration-300">
 
-                {/* Calendar Title & Quick Jump */}
+                {/* Calendar Title */}
                 <div className="flex justify-between items-center mb-4">
-
                   <div>
                     <h2 className="text-xl font-semibold text-violet-700 dark:text-violet-400">
                       Wellness Journey
@@ -478,49 +478,47 @@ const Mood = () => {
                       Monthly emotional calendar
                     </p>
                   </div>
-
-                  {!isCurrentMonth && (
-                    <button
-                      onClick={resetToToday}
-                      type="button"
-                      className="text-xs font-semibold px-2.5 py-1 rounded-full bg-violet-100 text-violet-700 hover:bg-violet-200 dark:bg-violet-900/40 dark:text-violet-300 transition-colors shadow-xs"
-                      title="Jump back to current month"
-                    >
-                      Current Month
-                    </button>
-                  )}
-
                 </div>
 
                 {/* Month Navigation Bar */}
                 <div className="flex items-center justify-between bg-violet-50/70 dark:bg-slate-800/80 rounded-xl px-3 py-2 mb-4 border border-violet-100/70 dark:border-slate-700/60">
-
+                  {/* Previous Month Button (Allows checking past months) */}
                   <button
                     onClick={prevMonth}
                     type="button"
                     aria-label="Previous month"
                     className="w-8 h-8 rounded-lg flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-white dark:hover:bg-slate-700 hover:text-violet-700 dark:hover:text-violet-300 transition-all shadow-none hover:shadow-xs cursor-pointer"
-                    title="Previous Month"
+                    title="Check Previous Month"
                   >
                     <span className="material-symbols-outlined text-[20px]">chevron_left</span>
                   </button>
 
-                  <div className="text-center">
+                  <div className="text-center flex items-center justify-center gap-2">
                     <span className="text-sm font-bold text-gray-800 dark:text-gray-100 tracking-wide">
                       {monthName} {viewYear}
                     </span>
+                    {isCurrentMonth && (
+                      <span className="text-[10px] font-semibold text-violet-700 dark:text-violet-300 bg-violet-100/80 dark:bg-violet-950/60 px-2 py-0.5 rounded-full border border-violet-200/50 dark:border-violet-800/40">
+                        Current Month
+                      </span>
+                    )}
                   </div>
 
+                  {/* Next Month Button (Disabled on current month so future months cannot be accessed) */}
                   <button
                     onClick={nextMonth}
+                    disabled={isCurrentMonth}
                     type="button"
                     aria-label="Next month"
-                    className="w-8 h-8 rounded-lg flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-white dark:hover:bg-slate-700 hover:text-violet-700 dark:hover:text-violet-300 transition-all shadow-none hover:shadow-xs cursor-pointer"
-                    title="Next Month"
+                    className={`w-8 h-8 rounded-lg flex items-center justify-center transition-all ${
+                      isCurrentMonth
+                        ? "text-gray-300 dark:text-slate-600 cursor-not-allowed opacity-40"
+                        : "text-gray-600 dark:text-gray-300 hover:bg-white dark:hover:bg-slate-700 hover:text-violet-700 dark:hover:text-violet-300 shadow-none hover:shadow-xs cursor-pointer"
+                    }`}
+                    title={isCurrentMonth ? "Cannot browse future months" : "Next Month"}
                   >
                     <span className="material-symbols-outlined text-[20px]">chevron_right</span>
                   </button>
-
                 </div>
 
                 {/* Day-of-week Headers */}
@@ -558,8 +556,8 @@ const Mood = () => {
                     const moodForDay = typeof moodData === "object" ? moodData?.mood : moodData;
 
                     const isToday =
-                      viewYear === today.getFullYear() &&
-                      viewMonth === today.getMonth() &&
+                      viewYear === currentYear &&
+                      viewMonth === currentMonth &&
                       day === today.getDate();
 
                     return (

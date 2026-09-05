@@ -7,23 +7,39 @@ const API_URL =
 export const sendChatMessage = async (message, history = []) => {
   const token = localStorage.getItem("token");
 
-  const response = await axios.post(
-    `${API_URL}/api/chat`,
-    {
-      message,
-      history,
-    },
-    {
-      headers: {
-        "Content-Type": "application/json",
-        ...(token
-          ? {
-              Authorization: `Bearer ${token}`,
-            }
-          : {}),
+  try {
+    const response = await axios.post(
+      `${API_URL}/api/chat`,
+      {
+        message,
+        history,
       },
-    }
-  );
+      {
+        headers: {
+          "Content-Type": "application/json",
+          ...(token
+            ? {
+                Authorization: `Bearer ${token}`,
+              }
+            : {}),
+        },
+      }
+    );
 
-  return response.data;
+    return response.data;
+  } catch (err) {
+    // If token expired or rejected, retry as guest
+    if (err.response?.status === 401 && token) {
+      localStorage.removeItem("token");
+      const retryRes = await axios.post(
+        `${API_URL}/api/chat`,
+        { message, history },
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+      return retryRes.data;
+    }
+    throw err;
+  }
 };

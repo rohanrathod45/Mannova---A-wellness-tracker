@@ -2009,16 +2009,16 @@ export default function Profile() {
   return (
     <Layout>
 
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen">
 
-        <main className="mx-auto max-w-7xl px-4 py-8 pb-32 md:px-10 ">
+        <main className="mx-auto max-w-7xl px-4 sm:px-6 md:px-10 py-6 sm:py-8 pb-32">
 
 
           {/* ================================= */}
           {/* PROFILE HEADER */}
           {/* ================================= */}
 
-          <section className="mb-12 flex flex-col items-center gap-8 md:flex-row">
+          <section className="mb-8 sm:mb-12 flex flex-col items-center gap-6 sm:gap-8 md:flex-row">
 
             {/* PROFILE IMAGE */}
 
@@ -2623,8 +2623,8 @@ export default function Profile() {
             EDIT PROFILE MODAL
         ========================================== */}
         {showEditProfile && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/55 px-4 backdrop-blur-sm transition-opacity duration-300">
-            <div className={`w-full max-w-md rounded-2xl p-6 shadow-2xl transition-all duration-300 transform scale-100 ${
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/55 p-4 backdrop-blur-sm transition-opacity duration-300">
+            <div className={`w-full max-w-md max-h-[90vh] overflow-y-auto rounded-2xl p-5 sm:p-6 shadow-2xl transition-all duration-300 transform scale-100 ${
               darkMode ? "bg-[#1e2530] text-white border border-gray-700" : "bg-white text-gray-800"
             }`}>
               <div className="flex items-center justify-between mb-6 border-b pb-3 border-gray-200/50">
@@ -2732,13 +2732,13 @@ export default function Profile() {
             NOTIFICATION SETTINGS MODAL
         ========================================== */}
         {showNotificationSettings && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/55 px-4 backdrop-blur-sm">
-            <form onSubmit={handleSaveNotifications} className={`w-full max-w-md rounded-2xl p-6 shadow-2xl ${
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/55 p-4 backdrop-blur-sm">
+            <form onSubmit={handleSaveNotifications} className={`w-full max-w-md max-h-[90vh] overflow-y-auto rounded-2xl p-5 sm:p-6 shadow-2xl ${
               darkMode ? "bg-[#1e2530] text-white border border-gray-700" : "bg-white text-gray-800"
             }`}>
               <div className="flex items-center justify-between mb-6 border-b pb-3 border-gray-200/50">
-                <h3 className="text-2xl font-bold text-[#674bb5]">Notification Settings</h3>
-                <button type="button" onClick={() => setShowNotificationSettings(false)} className="text-2xl text-gray-400 hover:text-gray-600">&times;</button>
+                <h3 className="text-xl sm:text-2xl font-bold text-[#674bb5]">Notification Settings</h3>
+                <button type="button" onClick={() => setShowNotificationSettings(false)} className="text-2xl text-gray-400 hover:text-gray-600 cursor-pointer">&times;</button>
               </div>
 
               <div className="flex flex-col gap-5">
@@ -2786,7 +2786,7 @@ export default function Profile() {
                 <button
                   type="button"
                   onClick={() => setShowNotificationSettings(false)}
-                  className={`flex-1 rounded-full border py-3 font-semibold hover:bg-gray-50 dark:hover:bg-gray-800 transition ${
+                  className={`flex-1 rounded-full border py-3 font-semibold hover:bg-gray-50 dark:hover:bg-gray-800 transition cursor-pointer ${
                     darkMode ? "border-gray-600 text-gray-300" : "border-gray-300 text-gray-700"
                   }`}
                 >
@@ -2794,7 +2794,7 @@ export default function Profile() {
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 rounded-full bg-gradient-to-r from-[#674bb5] to-[#8b5cf6] py-3 font-semibold text-white shadow-lg shadow-violet-500/25 hover:opacity-90 active:scale-95 transition"
+                  className="flex-1 rounded-full bg-gradient-to-r from-[#674bb5] to-[#8b5cf6] py-3 font-semibold text-white shadow-lg shadow-violet-500/25 hover:opacity-90 active:scale-95 transition cursor-pointer"
                 >
                   Save Settings
                 </button>
@@ -2807,13 +2807,13 @@ export default function Profile() {
             PRIVACY SETTINGS MODAL
         ========================================== */}
         {showPrivacySettings && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/55 px-4 backdrop-blur-sm">
-            <form onSubmit={handleSavePrivacy} className={`w-full max-w-md rounded-2xl p-6 shadow-2xl ${
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/55 p-4 backdrop-blur-sm">
+            <form onSubmit={handleSavePrivacy} className={`w-full max-w-md max-h-[90vh] overflow-y-auto rounded-2xl p-5 sm:p-6 shadow-2xl ${
               darkMode ? "bg-[#1e2530] text-white border border-gray-700" : "bg-white text-gray-800"
             }`}>
               <div className="flex items-center justify-between mb-6 border-b pb-3 border-gray-200/50">
-                <h3 className="text-2xl font-bold text-[#674bb5]">Privacy Controls</h3>
-                <button type="button" onClick={() => setShowPrivacySettings(false)} className="text-2xl text-gray-400 hover:text-gray-600">&times;</button>
+                <h3 className="text-xl sm:text-2xl font-bold text-[#674bb5]">Privacy Controls</h3>
+                <button type="button" onClick={() => setShowPrivacySettings(false)} className="text-2xl text-gray-400 hover:text-gray-600 cursor-pointer">&times;</button>
               </div>
 
               <div className="flex flex-col gap-5">
@@ -2861,7 +2861,7 @@ export default function Profile() {
                 <button
                   type="button"
                   onClick={() => setShowPrivacySettings(false)}
-                  className={`flex-1 rounded-full border py-3 font-semibold hover:bg-gray-50 dark:hover:bg-gray-800 transition ${
+                  className={`flex-1 rounded-full border py-3 font-semibold hover:bg-gray-50 dark:hover:bg-gray-800 transition cursor-pointer ${
                     darkMode ? "border-gray-600 text-gray-300" : "border-gray-300 text-gray-700"
                   }`}
                 >
@@ -2869,7 +2869,7 @@ export default function Profile() {
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 rounded-full bg-gradient-to-r from-[#674bb5] to-[#8b5cf6] py-3 font-semibold text-white shadow-lg shadow-violet-500/25 hover:opacity-90 active:scale-95 transition"
+                  className="flex-1 rounded-full bg-gradient-to-r from-[#674bb5] to-[#8b5cf6] py-3 font-semibold text-white shadow-lg shadow-violet-500/25 hover:opacity-90 active:scale-95 transition cursor-pointer"
                 >
                   Save Settings
                 </button>
@@ -2882,13 +2882,13 @@ export default function Profile() {
             MEMBERSHIP MODAL
         ========================================== */}
         {showMembershipSettings && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/55 px-4 backdrop-blur-sm">
-            <div className={`w-full max-w-lg rounded-2xl p-6 shadow-2xl ${
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/55 p-4 backdrop-blur-sm">
+            <div className={`w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-2xl p-5 sm:p-6 shadow-2xl ${
               darkMode ? "bg-[#1e2530] text-white border border-gray-700" : "bg-white text-gray-800"
             }`}>
               <div className="flex items-center justify-between mb-6 border-b pb-3 border-gray-200/50">
-                <h3 className="text-2xl font-bold text-[#674bb5]">Manage Membership</h3>
-                <button onClick={() => setShowMembershipSettings(false)} className="text-2xl text-gray-400 hover:text-gray-600">&times;</button>
+                <h3 className="text-xl sm:text-2xl font-bold text-[#674bb5]">Manage Membership</h3>
+                <button onClick={() => setShowMembershipSettings(false)} className="text-2xl text-gray-400 hover:text-gray-600 cursor-pointer">&times;</button>
               </div>
 
               <p className="mb-6 text-sm text-gray-500 dark:text-gray-400">

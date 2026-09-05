@@ -458,23 +458,23 @@ export default function Breathing() {
 
   return (
     <Layout>
-      <div className="min-h-[calc(100vh-64px)] w-full bg-[#f8f9ff] dark:bg-[#0b0f19] text-slate-900 dark:text-slate-100 flex flex-col items-center justify-center relative overflow-hidden transition-colors duration-300 px-4 py-8">
+      <div className="min-h-[calc(100vh-64px)] w-full bg-[#f8f9ff] dark:bg-[#0b0f19] text-slate-900 dark:text-slate-100 flex flex-col items-center justify-center relative overflow-hidden transition-colors duration-300 px-4 py-6 pb-28 md:py-10 md:pb-12">
         {/* Background Ambient Glows */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <div className="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-violet-300/25 dark:bg-violet-900/20 blur-[120px] animate-pulse" />
           <div className="absolute -bottom-32 -right-32 w-96 h-96 rounded-full bg-sky-300/25 dark:bg-sky-900/15 blur-[120px] animate-pulse" />
         </div>
 
-        <div className="relative z-10 w-full max-w-2xl flex flex-col items-center gap-6 sm:gap-8 text-center">
+        <div className="relative z-10 w-full max-w-2xl flex flex-col items-center gap-5 sm:gap-8 text-center">
           {/* Header */}
           <div>
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-violet-100 text-violet-700 dark:bg-violet-950/50 dark:text-violet-300 border border-violet-200/50 dark:border-violet-800/40 mb-3">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-violet-100 text-violet-700 dark:bg-violet-950/50 dark:text-violet-300 border border-violet-200/50 dark:border-violet-800/40 mb-2 sm:mb-3">
               <Sparkles size={14} /> 3-Phase Continuous Flow
             </div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight">
+            <h1 className="text-2xl sm:text-4xl md:text-5xl font-extrabold tracking-tight">
               Guided Breathing
             </h1>
-            <p className="mt-1 text-sm sm:text-base text-gray-600 dark:text-gray-400 max-w-md mx-auto">
+            <p className="mt-1 text-xs sm:text-base text-gray-600 dark:text-gray-400 max-w-md mx-auto">
               Follow the natural rhythm: <strong className="text-violet-600 dark:text-violet-400">Breathe In → Hold → Breathe Out → Breathe In</strong>
             </p>
           </div>
@@ -482,7 +482,7 @@ export default function Breathing() {
           {/* =====================================================
               BREATHING ORB WITH COUNTDOWN & RHYTHMIC SOUND
           ===================================================== */}
-          <div className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 flex items-center justify-center my-2">
+          <div className="relative w-56 h-56 sm:w-72 sm:h-72 md:w-80 md:h-80 flex items-center justify-center my-1 sm:my-2">
             {/* Outer Ambient Rings */}
             <div
               className={`absolute inset-0 rounded-full border-2 transition-all duration-700 ${orb.ringColor}`}
@@ -502,17 +502,17 @@ export default function Breathing() {
 
             {/* Main Interactive Animated Orb */}
             <div
-              className={`w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-full bg-gradient-to-br from-violet-600 via-purple-600 to-indigo-700 dark:from-violet-500 dark:via-purple-600 dark:to-indigo-800 flex flex-col items-center justify-center text-white ${orb.scale} ${orb.glowColor} transition-transform ease-in-out cursor-pointer select-none`}
+              className={`w-44 h-44 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-full bg-gradient-to-br from-violet-600 via-purple-600 to-indigo-700 dark:from-violet-500 dark:via-purple-600 dark:to-indigo-800 flex flex-col items-center justify-center text-white ${orb.scale} ${orb.glowColor} transition-transform ease-in-out cursor-pointer select-none`}
               style={{
                 transitionDuration: `${orb.duration}s`,
               }}
               onClick={toggleExercise}
             >
-              <span className="text-xs uppercase tracking-[3px] font-bold text-violet-200/90 mb-1">
+              <span className="text-[10px] sm:text-xs uppercase tracking-[2px] sm:tracking-[3px] font-bold text-violet-200/90 mb-0.5 sm:mb-1">
                 {isRunning ? currentConfig.name : "Tap Orb"}
               </span>
 
-              <h2 className="text-2xl sm:text-3xl font-black tracking-wide">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-black tracking-wide">
                 {orb.text}
               </h2>
 

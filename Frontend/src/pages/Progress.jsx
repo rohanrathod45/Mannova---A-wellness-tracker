@@ -1285,24 +1285,24 @@ export default function Progress() {
   return (
     <Layout>
 
-      <main className="max-w-7xl mx-auto px-4 md:px-10 pt-8 pb-24">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 pt-6 sm:pt-8 pb-28 md:pb-24">
 
 
         {/* ==================================================
             TITLE
         ================================================== */}
 
-        <section className="mb-12">
+        <section className="mb-8 sm:mb-12">
 
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
 
             <div>
 
-              <h2 className="text-4xl md:text-5xl font-bold mb-2">
+              <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold mb-2">
                 Your Wellness Journey
               </h2>
 
-              <p className="text-gray-500 max-w-2xl">
+              <p className="text-gray-500 text-xs sm:text-sm md:text-base max-w-2xl">
                 Reflect on your progress and celebrate
                 your commitment to mental tranquility.
                 Your consistency is building a stronger
@@ -1314,7 +1314,7 @@ export default function Progress() {
 
             <button
               onClick={handleGenerateReport}
-              className="bg-violet-600 text-white px-6 py-3 rounded-full shadow-lg hover:scale-105 transition"
+              className="w-full sm:w-auto bg-violet-600 text-white px-6 py-3 rounded-full shadow-lg hover:scale-105 transition cursor-pointer font-semibold text-sm"
             >
               Generate Report
             </button>
@@ -1335,11 +1335,11 @@ export default function Progress() {
             STATS
         ================================================== */}
 
-        <section className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8 sm:mb-12">
 
 
           {/* STREAK */}
-          <div className="glass-card rounded-2xl p-6 flex items-center gap-5 hover:-translate-y-1 transition-all">
+          <div className="glass-card rounded-2xl p-4 sm:p-6 flex items-center gap-4 sm:gap-5 hover:-translate-y-1 transition-all">
             <div className="w-16 h-16 rounded-2xl bg-amber-500/15 dark:bg-amber-500/20 border border-amber-500/30 dark:border-amber-500/40 flex items-center justify-center flex-shrink-0 shadow-md shadow-amber-500/10">
               <span
                 className="material-symbols-outlined text-4xl text-amber-500 dark:text-amber-400 drop-shadow-sm"
@@ -1967,14 +1967,14 @@ export default function Progress() {
             LATEST REFLECTION
         ================================================== */}
 
-        <section className="glass-card rounded-2xl p-8 relative overflow-hidden mb-20">
+        <section className="glass-card rounded-2xl p-5 sm:p-8 relative overflow-hidden mb-12 sm:mb-20">
 
-          <div className="flex flex-col md:flex-row items-center gap-8">
+          <div className="flex flex-col md:flex-row items-center gap-6 sm:gap-8">
 
             <div className="flex-shrink-0">
 
               <div
-                className="w-32 h-32 rounded-2xl bg-cover bg-center shadow-xl"
+                className="w-24 h-24 sm:w-32 sm:h-32 rounded-2xl bg-cover bg-center shadow-xl"
                 style={{
                   backgroundImage:
                     "url('https://lh3.googleusercontent.com/aida-public/AB6AXuAIGbLseHJkfpSPAP1kILoAtNHnZ_vpRWiTFu3J0wTlQU9anoICpGxtdTiY08Ewn5clrA7MA_LdTd1XdfbW0vWwB-jH1dd7KseqWBOI6ba40sAW0rcBi13cAO2VrfEhh4JxQ_56trw6z8nYOwxOSUKkMZJEzNKESH_G5EQ4QdZ7qN819TXkNgr7RzHA90EqC2An9yYi2dT0N_Gkva7qVuGswS7R4Bs4xZvv3sraPnRxM2nlYYeXvuuZ5g')",
@@ -1986,7 +1986,7 @@ export default function Progress() {
 
             <div>
 
-              <h3 className="text-3xl font-semibold mb-3">
+              <h3 className="text-2xl sm:text-3xl font-semibold mb-3">
 
                 {latestReflection
                   ? "Your Latest Reflection"
@@ -1995,7 +1995,7 @@ export default function Progress() {
               </h3>
 
 
-              <p className="text-gray-500 mb-6 max-w-2xl">
+              <p className="text-gray-500 mb-6 max-w-2xl text-xs sm:text-sm md:text-base">
 
                 {latestReflection
                   ? latestReflection.note ||
@@ -2012,9 +2012,9 @@ export default function Progress() {
 
               {latestReflection && (
 
-                <div className="flex flex-wrap gap-3 mb-5">
+                <div className="flex flex-wrap gap-2.5 sm:gap-3 mb-5 text-xs sm:text-sm">
 
-                  <span className="px-4 py-2 rounded-full bg-violet-100 text-violet-700">
+                  <span className="px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-violet-100 text-violet-700">
 
                     Mood:{" "}
 
@@ -2027,7 +2027,7 @@ export default function Progress() {
                   </span>
 
 
-                  <span className="px-4 py-2 rounded-full bg-blue-100 text-blue-700">
+                  <span className="px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-blue-100 text-blue-700">
 
                     Intensity:{" "}
 
@@ -2040,7 +2040,7 @@ export default function Progress() {
               )}
 
 
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-wrap gap-3 sm:gap-4">
 
                 <button
                   onClick={() => {
@@ -2052,7 +2052,7 @@ export default function Progress() {
                     );
 
                   }}
-                  className="bg-violet-600 text-white px-6 py-3 rounded-full hover:shadow-lg transition"
+                  className="bg-violet-600 text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-full hover:shadow-lg transition cursor-pointer text-xs sm:text-sm font-semibold"
                 >
                   View Insights
                 </button>
@@ -2066,7 +2066,7 @@ export default function Progress() {
                     );
 
                   }}
-                  className="border border-gray-300 px-6 py-3 rounded-full hover:bg-gray-100 transition"
+                  className="border border-gray-300 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full hover:bg-gray-100 dark:hover:bg-slate-800 transition cursor-pointer text-xs sm:text-sm font-semibold"
                 >
                   Schedule Exercise
                 </button>
@@ -2086,16 +2086,16 @@ export default function Progress() {
 
         <section className="mb-12">
 
-          <h3 className="text-2xl font-semibold mb-8">
+          <h3 className="text-xl sm:text-2xl font-semibold mb-6 sm:mb-8">
             Milestones & Achievements
           </h3>
 
 
-          <div className="flex flex-wrap gap-8">
+          <div className="flex flex-wrap justify-center sm:justify-start gap-6 sm:gap-8">
 
             {/* CALM SEEKER */}
             <div className="flex flex-col items-center">
-              <div className="w-24 h-24 rounded-full bg-pink-100 dark:bg-pink-950/40 border border-pink-200 dark:border-pink-800/40 flex items-center justify-center shadow-lg shadow-pink-500/10">
+              <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-pink-100 dark:bg-pink-950/40 border border-pink-200 dark:border-pink-800/40 flex items-center justify-center shadow-lg shadow-pink-500/10">
                 <span
                   className="material-symbols-outlined text-4xl text-pink-600 dark:text-pink-400"
                   style={{

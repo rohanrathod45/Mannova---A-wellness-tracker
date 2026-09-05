@@ -607,7 +607,7 @@ export default function Navbar() {
 
   return (
 
-    <header className="bg-white/80 backdrop-blur-xl sticky top-0 z-50 border-b border-gray-200/30">
+    <header className="bg-white/80 dark:bg-[#0f172a]/80 backdrop-blur-xl sticky top-0 z-50 border-b border-gray-200/30 dark:border-slate-800/50 transition-colors duration-300">
 
       <div
         className="
@@ -633,10 +633,12 @@ export default function Navbar() {
             order-2
             md:order-none
 
-            w-11
-            h-11
-            sm:w-12
-            sm:h-12
+            w-10
+            h-10
+            sm:w-11
+            sm:h-11
+            md:w-12
+            md:h-12
 
             rounded-full
             border-2
@@ -851,16 +853,17 @@ export default function Navbar() {
 
         <div className="order-1 md:order-none flex items-center gap-2 sm:gap-3">
 
-          {/* THEME TOGGLE BUTTON */}
+          {/* THEME TOGGLE BUTTON (HIDDEN ON MOBILE, VISIBLE ON DESKTOP) */}
           <button
             onClick={toggleDarkMode}
             type="button"
             aria-label={darkMode ? "Switch to light theme" : "Switch to dark theme"}
             title={darkMode ? "Switch to Light Theme" : "Switch to Dark Theme"}
             className={`
+              hidden md:flex
               w-9 h-9 sm:w-10 sm:h-10
               rounded-full
-              flex items-center justify-center
+              items-center justify-center
               cursor-pointer
               transition-all duration-300
               hover:scale-105 active:scale-95
@@ -876,7 +879,7 @@ export default function Navbar() {
             </span>
           </button>
 
-          {/* PROFILE */}
+          {/* PROFILE (AVATAR + NAME) */}
           <button
             onClick={() => navigate("/profile")}
             className="
@@ -908,17 +911,20 @@ export default function Navbar() {
               />
               <span
                 className="
-                  hidden xl:inline
-                  text-sm
+                  inline
+                  text-xs
+                  sm:text-sm
                   font-semibold
-                  text-gray-700
+                  text-gray-800
                   dark:text-gray-200
                   whitespace-nowrap
-                  max-w-[120px]
+                  max-w-[100px]
+                  sm:max-w-[130px]
+                  md:max-w-[150px]
                   truncate
                 "
               >
-                {user?.fullName || ""}
+                {user?.fullName || "User"}
               </span>
             </div>
           </button>

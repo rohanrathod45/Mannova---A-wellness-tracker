@@ -83,6 +83,16 @@ export default function Chat() {
   const [isLoading, setIsLoading] = useState(false);
   const [messages, setMessages] = useState(getInitialMessages);
   const chatMessagesRef = useRef(null);
+  const messagesEndRef = useRef(null);
+
+  // Lock body scroll so ONLY the chat messages container can scroll
+  useEffect(() => {
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prevOverflow;
+    };
+  }, []);
 
   // Auto-save chat
   useEffect(() => {
@@ -93,14 +103,17 @@ export default function Chat() {
     }
   }, [messages, CHAT_STORAGE_KEY]);
 
-  // Auto-scroll
+  // Auto-scroll strictly inside messages container
+  const scrollToBottom = (behavior = "smooth") => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior });
+    } else if (chatMessagesRef.current) {
+      chatMessagesRef.current.scrollTop = chatMessagesRef.current.scrollHeight;
+    }
+  };
+
   useEffect(() => {
-    const container = chatMessagesRef.current;
-    if (!container) return;
-    container.scrollTo({
-      top: container.scrollHeight,
-      behavior: "smooth",
-    });
+    scrollToBottom("smooth");
   }, [messages, isLoading]);
 
   const getCurrentTime = () => {
@@ -261,7 +274,7 @@ export default function Chat() {
 
   return (
     <Layout>
-      <div className="h-[calc(100dvh-64px-64px)] md:h-[calc(100dvh-64px)] w-full bg-[#f8f9ff] dark:bg-[#0b0f19] text-slate-800 dark:text-slate-100 flex flex-col overflow-hidden transition-colors duration-300">
+      <div className="fixed inset-x-0 top-16 bottom-16 md:bottom-0 z-20 bg-[#f8f9ff] dark:bg-[#0b0f19] text-slate-800 dark:text-slate-100 flex flex-col overflow-hidden transition-colors duration-300">
         <div className="flex flex-1 min-h-0 overflow-hidden max-w-7xl w-full mx-auto">
           {/* =====================================================
               DESKTOP SIDEBAR
@@ -372,11 +385,11 @@ export default function Chat() {
           </aside>
 
           {/* =====================================================
-              MAIN CHAT CONTAINER
+              MAIN CHAT CONTAINER (FIXED VIEWPORT)
           ===================================================== */}
-          <section className="flex flex-1 flex-col min-w-0 min-h-0 bg-transparent">
+          <section className="flex flex-1 flex-col min-w-0 min-h-0 h-full bg-transparent overflow-hidden">
             {/* Top Bar on Mobile */}
-            <div className="flex md:hidden items-center justify-between px-4 py-2.5 bg-white/80 dark:bg-[#101726]/80 backdrop-blur border-b border-gray-200 dark:border-slate-800">
+            <div className="flex md:hidden items-center justify-between px-4 py-2.5 bg-white/90 dark:bg-[#101726]/90 backdrop-blur border-b border-gray-200 dark:border-slate-800 flex-shrink-0">
               <div className="flex items-center gap-2">
                 <div className="w-7 h-7 rounded-lg bg-violet-600 text-white flex items-center justify-center shadow">
                   <Bot size={16} />
@@ -394,12 +407,12 @@ export default function Chat() {
               </button>
             </div>
 
-            {/* Messages Scroll Area */}
+            {/* Messages Scroll Area - ONLY THIS AREA SCROLLS */}
             <div
               ref={chatMessagesRef}
-              className="flex-1 min-h-0 overflow-y-auto px-4 sm:px-6 py-6 space-y-5"
+              className="flex-1 min-h-0 overflow-y-auto overscroll-contain px-4 sm:px-6 py-4 sm:py-6 space-y-4 sm:space-y-5"
             >
-              <div className="max-w-3xl mx-auto space-y-5">
+              <div className="max-w-3xl mx-auto space-y-4 sm:space-y-5">
                 {messages.map((msg) => {
                   const isUser = msg.type === "user";
 
@@ -469,11 +482,14 @@ export default function Chat() {
                     </div>
                   </div>
                 )}
+
+                {/* Scroll Anchor */}
+                <div ref={messagesEndRef} />
               </div>
             </div>
 
-            {/* Quick Action Chips */}
-            <div className="px-4 sm:px-6 py-2 border-t border-gray-200/50 dark:border-slate-800/60 bg-white/40 dark:bg-[#0d1422]/60">
+            {/* Quick Action Chips (Sticky above Input) */}
+            <div className="px-4 sm:px-6 py-2 border-t border-gray-200/50 dark:border-slate-800/60 bg-white/70 dark:bg-[#0d1422]/70 backdrop-blur flex-shrink-0">
               <div className="max-w-3xl mx-auto flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
                 {[
                   "🌿 Breathe together",
@@ -497,8 +513,8 @@ export default function Chat() {
               </div>
             </div>
 
-            {/* Input Bar */}
-            <div className="p-4 sm:p-5 border-t border-gray-200/80 dark:border-slate-800 bg-white dark:bg-[#101726]">
+            {/* Input Bar (Stuck to bottom) */}
+            <div className="p-3 sm:p-4 border-t border-gray-200/80 dark:border-slate-800 bg-white dark:bg-[#101726] flex-shrink-0">
               <form
                 onSubmit={(e) => {
                   e.preventDefault();

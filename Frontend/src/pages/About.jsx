@@ -3,15 +3,15 @@ import Layout from "../components/Layout";
 export default function About() {
   return (
     <Layout>
-      <div className="min-h-screen py-12 px-4 sm:px-6 max-w-5xl mx-auto">
-        <header className="text-center mb-12">
-          <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-violet-100 text-violet-700 dark:bg-violet-950/40 dark:text-violet-300 mb-4">
+      <div className="min-h-screen py-8 sm:py-12 px-4 sm:px-6 max-w-5xl mx-auto">
+        <header className="text-center mb-8 sm:mb-12">
+          <span className="inline-block px-3.5 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-violet-100 text-violet-700 dark:bg-violet-950/40 dark:text-violet-300 mb-3 sm:mb-4">
             About Mannova
           </span>
-          <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight mb-4">
+          <h1 className="text-2xl sm:text-4xl md:text-5xl font-extrabold tracking-tight mb-3 sm:mb-4">
             A Digital Sanctuary for Your Mind
           </h1>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
             Mannova combines evidence-backed mindfulness, personalized AI reflection, and comprehensive wellness tracking to support your mental clarity and inner peace.
           </p>
         </header>

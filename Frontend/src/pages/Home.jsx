@@ -17,7 +17,7 @@ function App() {
 
         {/* ===================== HERO SECTION ===================== */}
 
-        <section className="relative pt-4 pb-24 md:pt-4 md:pb-32 px-4 md:px-10 max-w-7xl mx-auto">
+        <section className="relative pt-4 pb-20 md:pt-6 md:pb-32 px-4 sm:px-6 md:px-10 max-w-7xl mx-auto">
 
           <div className="grid lg:grid-cols-2 gap-12 items-center">
 
@@ -125,19 +125,19 @@ function App() {
                 </div>
 
                 {/* Daily Streak */}
-                <div className="absolute bottom-5 right-110 bg-white/90 backdrop-blur-md p-5 rounded-2xl shadow-2xl z-20">
+                <div className="absolute bottom-2 left-2 sm:bottom-5 sm:left-4 bg-white/90 backdrop-blur-md p-3.5 sm:p-5 rounded-2xl shadow-2xl z-20">
 
-                  <p className="text-sm mb-2">
+                  <p className="text-xs sm:text-sm mb-1.5 sm:mb-2 font-medium">
                     Daily Streak
                   </p>
 
                   <div className="flex gap-1">
 
-                    <div className="w-4 h-2 rounded-full bg-purple-300"></div>
-                    <div className="w-4 h-2 rounded-full bg-purple-300"></div>
-                    <div className="w-4 h-2 rounded-full bg-purple-300"></div>
-                    <div className="w-4 h-2 rounded-full bg-gray-300"></div>
-                    <div className="w-4 h-2 rounded-full bg-gray-300"></div>
+                    <div className="w-3.5 sm:w-4 h-2 rounded-full bg-purple-300"></div>
+                    <div className="w-3.5 sm:w-4 h-2 rounded-full bg-purple-300"></div>
+                    <div className="w-3.5 sm:w-4 h-2 rounded-full bg-purple-300"></div>
+                    <div className="w-3.5 sm:w-4 h-2 rounded-full bg-gray-300"></div>
+                    <div className="w-3.5 sm:w-4 h-2 rounded-full bg-gray-300"></div>
 
                   </div>
 
@@ -153,7 +153,7 @@ function App() {
 
         {/* ===================== FEATURES SECTION ===================== */}
 
-        <section className="py-24 bg-purple-50 px-4 md:px-10">
+        <section className="py-16 md:py-24 bg-purple-50 px-4 sm:px-6 md:px-10">
 
           <div className="max-w-7xl mx-auto">
 
@@ -268,13 +268,13 @@ function App() {
 
         {/* ===================== STORY SECTION ===================== */}
 
-        <section className="py-24 px-4 md:px-10">
+        <section className="py-16 md:py-24 px-4 sm:px-6 md:px-10">
 
           <div className="max-w-7xl mx-auto grid lg:grid-cols-5 gap-16 items-center">
 
             <div className="lg:col-span-3">
 
-              <div className="relative rounded-[48px] overflow-hidden">
+              <div className="relative rounded-3xl sm:rounded-[48px] overflow-hidden">
 
                 <img
                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlDJVQoDEd85SvbuFgMsh0oAjZOnXzFkZMiFLzzOuqYjsMndaLeOOdMGa4eMGBlmn1w5bBXse0yqF0EUonMUC8hmO0klRxsb4RxL77SBkhCexxOD3MEHe-kBXsBt6-Nu-dSISzbuMJw_vNQIJubfO43ltOL9l4qNyHEeU0FjChjVzl5Fu_n-KeLeW6667da_jXH9ylfKiShEYeus5-x0OKWYPjLec1Mk55327UNxFY2I8P3VWI2Y9gpA"
@@ -286,7 +286,7 @@ function App() {
 
                 <div className="absolute bottom-4 left-4 right-4 sm:bottom-8 sm:left-8 sm:right-8 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-lg">
 
-                  <p className="italic text-xl">
+                  <p className="italic text-base sm:text-xl">
                     "Mannova changed how I perceive my stress.
                     It's not just an app; it's a companion on my journey."
                   </p>
@@ -365,38 +365,38 @@ function App() {
 
         {/* ================= CTA SECTION ================= */}
 
-        <section className="py-24 px-4 md:px-10">
+        <section className="py-16 md:py-24 px-4 sm:px-6 md:px-10">
 
           <div className="max-w-7xl mx-auto">
 
-            <div className="relative bg-purple-900 rounded-[48px] p-12 md:p-24 text-center overflow-hidden">
+            <div className="relative bg-purple-900 rounded-3xl sm:rounded-[48px] p-6 sm:p-12 md:p-24 text-center overflow-hidden">
 
               <div className="absolute inset-0 bg-purple-500/10"></div>
 
               <div className="relative z-10 max-w-3xl mx-auto">
 
-                <h2 className="text-white text-3xl sm:text-4xl md:text-5xl font-bold mb-6">
+                <h2 className="text-white text-2xl sm:text-4xl md:text-5xl font-bold mb-6">
                   Your journey to calm starts now.
                 </h2>
 
-                <p className="text-purple-200 text-lg mb-10">
+                <p className="text-purple-200 text-base sm:text-lg mb-8 sm:mb-10">
                   Join thousands who have rediscovered their balance with
                   Mannova.
                 </p>
 
-                <div className="flex flex-col sm:flex-row justify-center gap-5">
+                <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-5">
 
                   {/* KEEP THIS BUTTON STATIC */}
                   <button
-  type="button"
-  className="bg-white text-purple-700 px-10 py-5 rounded-full font-bold hover:scale-105 transition"
->
-  Get Started for Free
-</button>
+                    type="button"
+                    className="bg-white text-purple-700 px-8 sm:px-10 py-4 sm:py-5 rounded-full font-bold hover:scale-105 transition"
+                  >
+                    Get Started for Free
+                  </button>
 
                   <button
                     onClick={() => navigate("/about")}
-                    className="border border-white text-white px-10 py-5 rounded-full hover:bg-white hover:text-purple-700 transition"
+                    className="border border-white text-white px-8 sm:px-10 py-4 sm:py-5 rounded-full hover:bg-white hover:text-purple-700 transition"
                   >
                     View Pricing Plans
                   </button>
@@ -413,7 +413,7 @@ function App() {
 
         {/* ================= FOOTER ================= */}
 
-        <footer className="bg-slate-100 py-16 px-4 md:px-10">
+        <footer className="bg-slate-100 py-12 md:py-16 px-4 sm:px-6 md:px-10">
 
           <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-12">
 

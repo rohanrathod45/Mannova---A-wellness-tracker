@@ -44,6 +44,18 @@ body.dark-mode {
 /* ==========================================================================
    BASE & SMOOTH TRANSITIONS
    ========================================================================== */
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
   background: linear-gradient(135deg, #f8f5ff, #fef6ff);
   color: #1e293b;
